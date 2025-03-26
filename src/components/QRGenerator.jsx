@@ -134,7 +134,7 @@ function QRGenerator() {
           onClick={handleGenerate}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all transform hover:scale-105 mb-4"
         >
-          🚀 Generar Código QR
+          🚀 Generar QR
         </button>
 
         {error && <p className="text-red-500 mt-2 text-center text-sm">{error}</p>}
