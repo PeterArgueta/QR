@@ -66,7 +66,7 @@ function QRGenerator() {
 
         <input
           type="text"
-          placeholder="URL..."
+          placeholder="URL"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           className="w-full p-3 mb-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
