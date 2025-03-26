@@ -44,7 +44,7 @@ function QRGenerator() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
       <div className="w-full max-w-lg bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-all">
-        <h2 className="text-xl font-semibold mb-2 text-center">🔗 Genera tu Código QR</h2>
+        <h2 className="text-xl font-semibold mb-2 text-center">🔗 Generá tu código QR</h2>
         <div className="text-center mb-6">
           <a
             href="https://github.com/PeterArgueta"
