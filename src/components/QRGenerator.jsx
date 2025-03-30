@@ -177,7 +177,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('content')}
               >
                 <span className="section-icon">🌐</span>
-                <h3 className="section-title">INTRODUCE CONTENIDO</h3>
+                <h3 className="section-title">INGRESÁ EL ENLACE</h3>
                 <span className="section-toggle">
                   {sectionsVisible.content ? '−' : '+'}
                 </span>
@@ -204,7 +204,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('colors')}
               >
                 <span className="section-icon">🎨</span>
-                <h3 className="section-title">ESCOGE COLORES</h3>
+                <h3 className="section-title">ESCOGÉ EL COLOR</h3>
                 <span className="section-toggle">
                   {sectionsVisible.colors ? '−' : '+'}
                 </span>
@@ -314,7 +314,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('logo')}
               >
                 <span className="section-icon">🖼️</span>
-                <h3 className="section-title">AÑADIR IMAGEN DEL LOGO</h3>
+                <h3 className="section-title">AÑADÍ IMAGEN DEL LOGO</h3>
                 <span className="section-toggle">
                   {sectionsVisible.logo ? '−' : '+'}
                 </span>
@@ -356,7 +356,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('customize')}
               >
                 <span className="section-icon">⚙️</span>
-                <h3 className="section-title">PERSONALIZAR DISEÑO</h3>
+                <h3 className="section-title">TAMAÑO DEL QR</h3>
                 <span className="section-toggle">
                   {sectionsVisible.customize ? '−' : '+'}
                 </span>
@@ -401,7 +401,7 @@ function QRGenerator() {
                 onClick={handleGenerate}
                 className="button primary-button"
               >
-                Crea Código QR
+                Generar QR
               </button>
             </div>
           </div>
@@ -434,7 +434,7 @@ function QRGenerator() {
               ) : (
                 <div className="empty-state">
                   <div className="empty-icon">📱</div>
-                  <p>Introduce una URL y presiona "Crea Código QR"</p>
+                  <p>Ingresá un enlace y presioná "Generar QR"</p>
                 </div>
               )}
             </div>
