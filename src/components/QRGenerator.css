@@ -6,7 +6,7 @@ body, html {
 
 /* Estilos para la barra de navegación */
 .nav-bar {
-  background-color: #57A79A; /* Color morado */
+  background-color: #57A79A; /* Color verde azulado que modificaste */
   color: white;
   padding: 15px 20px;
   display: flex;
@@ -59,7 +59,6 @@ body, html {
 }
 
 /* Estilos para el generador de QR */
-
 .container {
   display: flex;
   flex-direction: column;
@@ -145,6 +144,10 @@ body, html {
   color: #666;
 }
 
+.margin-top {
+  margin-top: 12px;
+}
+
 .input {
   width: 100%;
   padding: 5px;
@@ -181,7 +184,7 @@ body, html {
 }
 
 .primary-button {
-  background-color: #57A79A;
+  background-color: #57A79A; /* Mismo color que la barra de navegación */
   color: white;
 }
 
@@ -207,6 +210,11 @@ body, html {
   margin-bottom: 15px;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+.qr-wrapper {
+  position: relative;
 }
 
 .download-container {
@@ -276,4 +284,113 @@ body, html {
   font-size: 11px;
   color: #999;
   margin: 8px 0;
+}
+
+/* Estilos para opciones de marcos */
+.frame-style-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.frame-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+.frame-option.selected {
+  border-color: #57A79A;
+  background-color: rgba(87, 167, 154, 0.1);
+}
+
+.frame-option span {
+  font-size: 10px;
+  color: #666;
+  margin-top: 3px;
+  text-align: center;
+}
+
+.frame-preview {
+  width: 40px;
+  height: 40px;
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.frame-none {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='10' y='10' width='20' height='20' fill='%23333'/%3E%3C/svg%3E");
+}
+
+.frame-simple {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='5' y='5' width='30' height='30' stroke='%23333' stroke-width='2' fill='none'/%3E%3Crect x='10' y='10' width='20' height='20' fill='%23333'/%3E%3C/svg%3E");
+}
+
+.frame-rounded {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='5' y='5' width='30' height='30' rx='6' stroke='%23333' stroke-width='2' fill='none'/%3E%3Crect x='10' y='10' width='20' height='20' fill='%23333'/%3E%3C/svg%3E");
+}
+
+.frame-fancy {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect x='5' y='5' width='30' height='30' stroke='%23333' stroke-width='2' fill='none'/%3E%3Ccircle cx='5' cy='5' r='2' fill='%23333'/%3E%3Ccircle cx='35' cy='5' r='2' fill='%23333'/%3E%3Ccircle cx='5' cy='35' r='2' fill='%23333'/%3E%3Ccircle cx='35' cy='35' r='2' fill='%23333'/%3E%3Crect x='10' y='10' width='20' height='20' fill='%23333'/%3E%3C/svg%3E");
+}
+
+/* Estilos para marcos aplicados al QR */
+.frame-style-simple {
+  border: 4px solid #000;
+  padding: 15px;
+  border-radius: 0;
+}
+
+.frame-style-rounded {
+  border: 4px solid #000;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.frame-style-fancy {
+  position: relative;
+  border: 3px solid #000;
+  padding: 15px;
+}
+
+/* Esquinas para el estilo fancy */
+.corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.corner.top-left {
+  top: -5px;
+  left: -5px;
+}
+
+.corner.top-right {
+  top: -5px;
+  right: -5px;
+}
+
+.corner.bottom-left {
+  bottom: -5px;
+  left: -5px;
+}
+
+.corner.bottom-right {
+  bottom: -5px;
+  right: -5px;
 }

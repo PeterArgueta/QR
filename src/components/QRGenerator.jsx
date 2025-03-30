@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import './QRGenerator.css';
 
@@ -9,7 +9,10 @@ function QRGenerator() {
     bgColor: '#ffffff',
     size: 200,
     errorCorrectionLevel: 'Q', // Nivel Q (25%) por defecto
-    logoImage: null
+    logoImage: null,
+    // Nuevas opciones estéticas
+    dotType: 'square', // square, rounded, dots, classy, diamond
+    frameStyle: 'none', // none, simple, rounded, fancy
   });
   const [showQR, setShowQR] = useState(false);
   
@@ -18,11 +21,19 @@ function QRGenerator() {
     content: true,
     colors: false,
     logo: false,
-    customize: false
+    customize: false,
+    style: false // Nueva sección para estilos
   });
   
   const qrRef = useRef(null);
   const fileInputRef = useRef(null);
+  
+  // Detectar cambios en las opciones y actualizar estilos
+  useEffect(() => {
+    if (showQR) {
+      applyStyles();
+    }
+  }, [showQR, qrOptions]);
 
   const toggleSection = (section) => {
     setSectionsVisible({
@@ -40,15 +51,53 @@ function QRGenerator() {
     }
   };
 
+  // Función para aplicar estilos personalizados
+  const applyStyles = () => {
+    if (!qrRef.current) return;
+    
+    // Aplicar estilo de marco
+    const container = qrRef.current;
+    
+    // Limpiamos clases anteriores
+    container.className = 'qr-container';
+    
+    // Aplicamos el marco si no es 'none'
+    if (qrOptions.frameStyle !== 'none') {
+      container.classList.add(`frame-style-${qrOptions.frameStyle}`);
+      
+      // Si es fancy, añadimos las esquinas con elementos DOM
+      if (qrOptions.frameStyle === 'fancy') {
+        // Limpiamos primero las esquinas previas
+        const existingCorners = container.querySelectorAll('.corner');
+        existingCorners.forEach(corner => corner.remove());
+        
+        // Creamos las cuatro esquinas
+        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+        corners.forEach(position => {
+          const corner = document.createElement('div');
+          corner.className = `corner ${position}`;
+          container.appendChild(corner);
+        });
+      }
+    }
+  };
+
   const handleDownload = () => {
     if (!showQR) return;
 
-    const canvas = qrRef.current.querySelector('canvas');
-    const url = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'codigo-qr.png';
-    link.click();
+    // Capturar el contenedor completo (incluyendo el marco si existe)
+    const container = qrRef.current;
+    const canvas = container.querySelector('canvas');
+    
+    // Si solo hay un canvas básico, lo descargamos directamente
+    if (canvas) {
+      const url = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'codigo-qr.png';
+      link.click();
+    } 
+    // Nota: Para descargar el QR con marco necesitaríamos html2canvas u otra solución
   };
 
   const handleLogoUpload = (e) => {
@@ -83,6 +132,22 @@ function QRGenerator() {
     { fg: '#374151', bg: '#ffffff' }
   ];
 
+  // Función para cambiar el tipo de punto del QR
+  const changeDotType = (dotType) => {
+    setQROptions({
+      ...qrOptions,
+      dotType
+    });
+  };
+
+  // Función para cambiar el estilo de marco
+  const changeFrameStyle = (frameStyle) => {
+    setQROptions({
+      ...qrOptions,
+      frameStyle
+    });
+  };
+
   return (
     <div className="container">
       {/* Barra de navegación */}
@@ -97,7 +162,6 @@ function QRGenerator() {
           </a>
           <div>
             <h1 className="app-title">Generá tu QR sin publicidad</h1>
-            <p className="app-subtitle">THE 100% FREE QR CODE GENERATOR</p>
           </div>
         </div>
         <div className="nav-links">
@@ -191,6 +255,57 @@ function QRGenerator() {
                         onChange={(e) => setQROptions({...qrOptions, bgColor: e.target.value})}
                         className="color-input"
                       />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Nueva Sección de Estilo */}
+            <div className="section">
+              <div 
+                className="section-header"
+                onClick={() => toggleSection('style')}
+              >
+                <span className="section-icon">✨</span>
+                <h3 className="section-title">ESTILO DE QR</h3>
+                <span className="section-toggle">
+                  {sectionsVisible.style ? '−' : '+'}
+                </span>
+              </div>
+              
+              {sectionsVisible.style && (
+                <div className="section-content">
+                  {/* Opciones de marco */}
+                  <label className="label">Marco decorativo</label>
+                  <div className="frame-style-options">
+                    <div 
+                      className={`frame-option ${qrOptions.frameStyle === 'none' ? 'selected' : ''}`}
+                      onClick={() => changeFrameStyle('none')}
+                    >
+                      <div className="frame-preview frame-none"></div>
+                      <span>Ninguno</span>
+                    </div>
+                    <div 
+                      className={`frame-option ${qrOptions.frameStyle === 'simple' ? 'selected' : ''}`}
+                      onClick={() => changeFrameStyle('simple')}
+                    >
+                      <div className="frame-preview frame-simple"></div>
+                      <span>Simple</span>
+                    </div>
+                    <div 
+                      className={`frame-option ${qrOptions.frameStyle === 'rounded' ? 'selected' : ''}`}
+                      onClick={() => changeFrameStyle('rounded')}
+                    >
+                      <div className="frame-preview frame-rounded"></div>
+                      <span>Redondeado</span>
+                    </div>
+                    <div 
+                      className={`frame-option ${qrOptions.frameStyle === 'fancy' ? 'selected' : ''}`}
+                      onClick={() => changeFrameStyle('fancy')}
+                    >
+                      <div className="frame-preview frame-fancy"></div>
+                      <span>Decorado</span>
                     </div>
                   </div>
                 </div>
@@ -302,23 +417,25 @@ function QRGenerator() {
           <div className="card preview-container">
             <div className="qr-container" ref={qrRef}>
               {showQR ? (
-                <QRCodeCanvas
-                  value={url || 'https://ejemplo.com'}
-                  size={qrOptions.size}
-                  fgColor={qrOptions.fgColor}
-                  bgColor={qrOptions.bgColor}
-                  level={qrOptions.errorCorrectionLevel}
-                  imageSettings={
-                    qrOptions.logoImage
-                      ? {
-                          src: qrOptions.logoImage,
-                          width: qrOptions.size * 0.2,
-                          height: qrOptions.size * 0.2,
-                          excavate: true,
-                        }
-                      : undefined
-                  }
-                />
+                <div className="qr-wrapper">
+                  <QRCodeCanvas
+                    value={url || 'https://ejemplo.com'}
+                    size={qrOptions.size}
+                    fgColor={qrOptions.fgColor}
+                    bgColor={qrOptions.bgColor}
+                    level={qrOptions.errorCorrectionLevel}
+                    imageSettings={
+                      qrOptions.logoImage
+                        ? {
+                            src: qrOptions.logoImage,
+                            width: qrOptions.size * 0.2,
+                            height: qrOptions.size * 0.2,
+                            excavate: true,
+                          }
+                        : undefined
+                    }
+                  />
+                </div>
               ) : (
                 <div className="empty-state">
                   <div className="empty-icon">📱</div>
