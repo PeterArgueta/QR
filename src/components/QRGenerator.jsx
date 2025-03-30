@@ -8,7 +8,7 @@ function QRGenerator() {
     fgColor: '#000000', // Negro por defecto
     bgColor: '#ffffff',
     size: 200,
-    errorCorrectionLevel: 'M',
+    errorCorrectionLevel: 'Q', // Nivel Q (25%) por defecto
     logoImage: null
   });
   const [showQR, setShowQR] = useState(false);
@@ -97,8 +97,13 @@ function QRGenerator() {
           </a>
           <div>
             <h1 className="app-title">Generá tu QR sin publicidad</h1>
-            <p className="app-subtitle">Peter Argueta</p>
+            <p className="app-subtitle">THE 100% FREE QR CODE GENERATOR</p>
           </div>
+        </div>
+        <div className="nav-links">
+          <a href="https://github.com/PeterArgueta" target="_blank" rel="noopener noreferrer" className="nav-link">
+            GITHUB
+          </a>
         </div>
       </div>
       
@@ -113,7 +118,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('content')}
               >
                 <span className="section-icon">🌐</span>
-                <h3 className="section-title">INGRESÁ EL ENLACE</h3>
+                <h3 className="section-title">INTRODUCE CONTENIDO</h3>
                 <span className="section-toggle">
                   {sectionsVisible.content ? '−' : '+'}
                 </span>
@@ -121,7 +126,7 @@ function QRGenerator() {
               
               {sectionsVisible.content && (
                 <div className="section-content">
-                  <label className="label">URL</label>
+                  <label className="label">Tu URL</label>
                   <input
                     type="text"
                     placeholder="https://www.ejemplo.com"
@@ -140,7 +145,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('colors')}
               >
                 <span className="section-icon">🎨</span>
-                <h3 className="section-title">ESCOGÉ EL COLOR</h3>
+                <h3 className="section-title">ESCOGE COLORES</h3>
                 <span className="section-toggle">
                   {sectionsVisible.colors ? '−' : '+'}
                 </span>
@@ -199,7 +204,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('logo')}
               >
                 <span className="section-icon">🖼️</span>
-                <h3 className="section-title">AÑADÍ IMAGEN DEL LOGO</h3>
+                <h3 className="section-title">AÑADIR IMAGEN DEL LOGO</h3>
                 <span className="section-toggle">
                   {sectionsVisible.logo ? '−' : '+'}
                 </span>
@@ -241,7 +246,7 @@ function QRGenerator() {
                 onClick={() => toggleSection('customize')}
               >
                 <span className="section-icon">⚙️</span>
-                <h3 className="section-title">PERSONALIZÁ EL DISEÑO</h3>
+                <h3 className="section-title">PERSONALIZAR DISEÑO</h3>
                 <span className="section-toggle">
                   {sectionsVisible.customize ? '−' : '+'}
                 </span>
@@ -286,7 +291,7 @@ function QRGenerator() {
                 onClick={handleGenerate}
                 className="button primary-button"
               >
-                Crear Código QR
+                Crea Código QR
               </button>
             </div>
           </div>
@@ -317,7 +322,7 @@ function QRGenerator() {
               ) : (
                 <div className="empty-state">
                   <div className="empty-icon">📱</div>
-                  <p>Ingresá un enlace y presioná "Crear Código QR"</p>
+                  <p>Introduce una URL y presiona "Crea Código QR"</p>
                 </div>
               )}
             </div>
