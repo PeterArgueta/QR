@@ -164,11 +164,6 @@ function QRGenerator() {
             <h1 className="app-title">Generá tu QR sin publicidad</h1>
           </div>
         </div>
-        <div className="nav-links">
-          <a href="https://github.com/PeterArgueta" target="_blank" rel="noopener noreferrer" className="nav-link">
-            GITHUB
-          </a>
-        </div>
       </div>
       
       <div className="qr-content">
