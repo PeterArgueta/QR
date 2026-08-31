@@ -2,7 +2,7 @@
   "name": "qr-code-generator",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://PeterArgueta.github.io/QR",
+  "homepage": "https://qr.converttomap.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
