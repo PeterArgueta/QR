@@ -32,6 +32,8 @@ jobs:
         run: npm run build
 
       - name: Publish gh-pages branch
-        run: npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: qr.converttomap.com
