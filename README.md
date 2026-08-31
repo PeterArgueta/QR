@@ -1,6 +1,6 @@
 # Generador de Códigos QR en React ⚛️📱
 Esta es una aplicación web creada con **React + Vite** que permite generar códigos QR personalizados a partir de una URL.  
-Puedes probarla en línea aquí 👉 [https://peterargueta.github.io/QR](https://peterargueta.github.io/QR)
+Puedes probarla en línea aquí 👉 [https://qr.converttomap.com](https://qr.converttomap.com)
 
 ---
 
