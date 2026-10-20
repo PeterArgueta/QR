@@ -1,82 +1,58 @@
-# Generador de Códigos QR en React ⚛️📱
-Esta es una aplicación web creada con **React + Vite** que permite generar códigos QR personalizados a partir de una URL.  
-Puedes probarla en línea aquí 👉 [https://qr.converttomap.com](https://qr.converttomap.com)
+# Generador de códigos QR
 
----
+Aplicación web para crear y descargar **códigos QR personalizados a partir de una URL**, con una interfaz adaptable a computadoras y dispositivos móviles.
 
-## ✨ Características
-- ✅ Generación de código QR en tiempo real
-- 🎨 Personalización de colores (fondo y primer plano)
-- 📐 Selección de tamaño: pequeño, mediano, grande
-- 🛡️ Corrección de errores (L, M, Q, H)
-- 🖼️ Añadir logo personalizado al centro del QR
-- 🏞️ Marcos decorativos para tus códigos QR
-- 📥 Opción para descargar el QR como imagen PNG
-- 🌙 Modo claro/oscuro automático según el sistema
-- ✅ Validación de URL con mensajes de error claros
-- 🚫 Sin publicidad ni marcas de agua
+**Demostración:** https://qr.converttomap.com
 
----
+## Capacidades
 
-## 🚀 Tecnologías utilizadas
-- [React](https://reactjs.org/)
-- [Vite](https://vitejs.dev/)
-- [qrcode.react](https://github.com/zpao/qrcode.react)
+- Generación de códigos QR con vista previa en tiempo real.
+- Personalización de colores de fondo y primer plano.
+- Configuración de tamaño y nivel de corrección de errores (L, M, Q, H).
+- Incorporación opcional de un logotipo central y distintos estilos de marco.
+- Exportación de la imagen como PNG.
+- Modo claro u oscuro y validación de URL.
 
----
+## Tecnologías y estructura
 
-## 🛠️ Cómo usar localmente
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/PeterArgueta/QR.git
-   cd QR
-   ```
+Frontend construido con **React 18 y Vite**, usando `qrcode.react` para generar códigos QR y `framer-motion` como dependencia de interfaz.
 
-2. Instala las dependencias:
-   ```bash
-   npm install
-   ```
+```text
+src/          Componentes y lógica de la aplicación
+public/       Recursos públicos
+index.html    Documento de entrada
+vite.config.js Configuración de compilación
+package.json  Dependencias y scripts
+```
 
-3. Inicia el servidor de desarrollo:
-   ```bash
-   npm run dev
-   ```
+## Ejecución local
 
-4. Abre tu navegador en `http://localhost:5173`
+Se requiere una versión de Node.js compatible con el proyecto.
 
----
+```bash
+git clone https://github.com/PeterArgueta/QR.git
+cd QR
+npm ci
+npm run dev
+```
 
-## 🧩 Personalización
-El generador de QR ofrece diversas opciones de personalización:
+Vite mostrará la dirección local de desarrollo, habitualmente `http://localhost:5173`.
 
-### Colores
-- Presets predefinidos para combinaciones populares
-- Selector de color personalizado para el código QR
-- Selector de color personalizado para el fondo
+## Compilación y despliegue
 
-### Marcos decorativos
-- **Simple**: Marco rectangular básico
-- **Redondeado**: Marco con esquinas redondeadas
-- **Decorado**: Marco con puntos en las esquinas
+```bash
+npm run build
+npm run preview
+```
 
-### Logo
-- Añade tu propia imagen de logo al centro del QR
-- La posición y tamaño se ajustan automáticamente
-- Compatible con todos los formatos de imagen comunes
+El script `npm run deploy` compila y publica la carpeta `dist/` mediante `gh-pages`, según la configuración existente. El dominio publicado es `qr.converttomap.com`; verifica las configuraciones DNS y de Pages antes de modificar la estrategia de publicación.
 
----
+## Mantenimiento
 
-## 📱 Compatibilidad
-- ✅ Móvil y desktop
-- ✅ Compatible con todos los navegadores modernos
-- ✅ Diseño responsivo
+Las dependencias se gestionan mediante `package.json` y `package-lock.json`. Los directorios `node_modules/` y los archivos de entorno locales deben excluirse del control de versiones. Este cambio de documentación no retira dependencias del historial ni modifica el despliegue.
 
----
+El generador se orienta a URLs. Un QR con logotipo, colores de poco contraste o tamaño reducido puede resultar difícil de leer; comprueba la imagen generada con varios lectores antes de utilizarla públicamente.
 
-## 📄 Licencia
-Este proyecto está licenciado bajo [MIT License](LICENSE).
+## Autor
 
----
-
-## 👨‍💻 Desarrollado por
 [Peter Argueta](https://github.com/PeterArgueta)
